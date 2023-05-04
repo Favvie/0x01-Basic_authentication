@@ -59,13 +59,10 @@ class BasicAuth(Auth):
             users = User.search({"email": user_email})
             if users:
                 for user in users:
-                    if not User.is_valid_password(user_pwd):
+                    if not user.is_valid_password(user_pwd):
                         return None
                 return user
-            else:
-                return None
-        else:
-            return None
+        return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """overload current user method"""
