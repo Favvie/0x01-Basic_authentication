@@ -56,12 +56,15 @@ class BasicAuth(Auth):
         if user_pwd is None or type(user_pwd) is not str:
             return None
 
-        if User.all() is not []:
-            users = User.search({"email": user_email})
-            for user in users:
-                if user.is_valid_password(user_pwd):
-                    return user
-        return None
+        try:
+            if User.all() is not []:
+                users = User.search({"email": user_email})
+                for user in users:
+                    if user.is_valid_password(user_pwd):
+                        return user
+            return None
+        except Exception:
+            return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """overload current user method"""
