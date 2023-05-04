@@ -6,7 +6,7 @@ from typing import TypeVar, List
 
 
 class Auth:
-    """The base authentication class"""
+    
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """check if the path requires authentication"""
         if path is None or excluded_paths is None:
