@@ -68,6 +68,7 @@ class BasicAuth(Auth):
             return None
 
     def current_user(self, request=None) -> TypeVar('User'):
+        """overload current user method"""
         if (self.authorization_header(request)) is not None:
             auth = self.extract_base64_authorization_header(
                 request.headers.get('Authorization'))
