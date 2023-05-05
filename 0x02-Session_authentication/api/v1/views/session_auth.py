@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Session authentication view"""
 
-
 from api.v1.views import app_views
 from flask import abort, request, jsonify, Response
 from models.user import User
@@ -26,7 +25,6 @@ def session_login():
         from api.v1.app import auth
         session_id = auth.create_session(user.id)
         response = jsonify(user.to_json())
-        # cookie_name = os.getenv
         response.set_cookie(os.getenv('SESSION_NAME'), session_id)
         return response
     return jsonify({'error': "wrong password"}), 401
