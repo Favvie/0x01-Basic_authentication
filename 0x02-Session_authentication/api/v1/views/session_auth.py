@@ -2,12 +2,12 @@
 """Session authentication view"""
 
 from api.v1.views import app_views
-from flask import abort, request, jsonify, Response
+from flask import abort, request, jsonify
 from models.user import User
 import os
 
 
-@app_views.route('/auth_session/login', methods=['POST'], strict_slashes=True)
+@app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def session_login():
     """session login route"""
     email = request.form.get('email')
@@ -31,7 +31,7 @@ def session_login():
 
 
 @app_views.route('/auth_session/logout', methods=['DELETE'],
-                 strict_slashes=True)
+                 strict_slashes=False)
 def delete_session():
     """delete a session"""
     from api.v1.app import auth
